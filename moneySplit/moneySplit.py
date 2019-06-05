@@ -1,11 +1,20 @@
+import math
+
+"""
+https://miguelbiron.github.io/2018/02/09/simplifying-payments-with-linear-programming/
+https://stackoverflow.com/questions/877728/what-algorithm-to-use-to-determine-minimum-number-of-actions-required-to-get-the/
+"""
+
 class NightOut:
 
     def __init__(self):
         self.entries = []
         self.amount_spent = 0
+
+        # amount spent / amount owed to group / amount group owes to you
         self.people = {}
 
-    def read_entries(self, filename):
+    def read_expenses(self, filename):
         file = open(filename)
         contents = file.readlines()
 
@@ -21,7 +30,7 @@ class NightOut:
             self.amount_spent += float(entry[2])
         print(round(self.amount_spent, 2))
 
-    def purchase_descriptions(self):
+    def expense_descriptions(self):
         desc = []
         for entry in self.entries:
             desc.append(entry[2:])
@@ -67,13 +76,19 @@ class NightOut:
         print(self.people)
 
 
+    def optimise_payments(self):
+        max_owed = None
+        min_owing = None
+
+        return 2
+
 
 if __name__ == "__main__":
 
     x = NightOut()
-    x.read_entries("testEntries.txt")
+    x.read_expenses("testEntries.txt")
     x.total_amount()
-    x.purchase_descriptions()
+    x.expense_descriptions()
     x.calculate_owing()
     x.calculate_spent_pp()
     x.calculate_owed()
